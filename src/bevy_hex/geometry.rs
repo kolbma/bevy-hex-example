@@ -19,7 +19,7 @@ pub fn center(radius: f32, c: &HexCoord, offset: &[f32; 3]) -> [f32; 3] {
     // Shift over by half a unit for each row
     let row_adjustment = 0.5 * rf;
     // This produces a rhombus, use integer division to cancel this out on every other row and get "roughly" a grid
-    let rhombus_adjustment = -(c.r / 2) as f32;
+    let rhombus_adjustment = -((c.r - (c.r & 1)) / 2) as f32;
     // Scale the whole thing up by twice the inner radius to get our x coordinate
     let x = (start + row_adjustment + rhombus_adjustment) * inner * 2.;
     // Each row moves us by 1.5 times the outer radius along the z axis
